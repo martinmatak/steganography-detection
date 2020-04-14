@@ -1,14 +1,14 @@
 import tensorflow as tf
 import api
 
-from tf.keras.optimizers import Adam
+from tensorflow.keras.optimizers import Adam
 from generator import ImagesGenerator
 from model import get_model
 from pathlib import Path
-from tf.keras.callbacks import LearningRateScheduler, ModelCheckpoint
+from tensorflow.keras.callbacks import LearningRateScheduler, ModelCheckpoint
 import numpy as np
 import argparse
-from tf.keras import metrics
+from tensorflow.keras import metrics
 from plotter import plot_loss_history
 
 
@@ -51,7 +51,7 @@ def main():
 
     # prepare model for training
     model = get_model(image_size=image_size)
-    model.compile(optimizer=Adam(), loss=tf.keras.losses.BinaryCrossentropy, metrics=[metrics.accuracy])
+    model.compile(optimizer=Adam(), loss=tf.keras.losses.BinaryCrossentropy(), metrics=['accuracy'])
     model.summary()
 
     # prepare output directory
@@ -65,7 +65,7 @@ def main():
                                  mode="min")
                  ]
 
-    # load training and test data
+    # load training and validation data
     nr_of_training_samples = api.total_number_of_training_samples()
     nr_of_valid_samples= api.total_number_of_validation_samples()
     train_api = api.train_api
