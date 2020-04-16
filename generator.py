@@ -36,10 +36,15 @@ class ImagesGenerator(Sequence):
 
         sample_indices = self.indices[idx * batch_size:(idx + 1) * batch_size]
 
-        for i, sample_id in enumerate(sample_indices):
-            image, label = self.load_image_api(sample_id, self.show_image)
+        for i, sample_id in enumerate(sample_indices / 2):
+            image, label = self.load_image_api(sample_id, {sample_id: "stegos"}, self.show_image)
             x[i] = transform_image(image, image_size)
             y[i] = label
+
+        for i, sample_id in enumerate(sample_indices / 2):
+            image, label = self.load_image_api(sample_id, {sample_id: "originals"}, self.show_image)
+            x[i + sample_indices / 2] = transform_image(image, image_size)
+            y[i + sample_indices / 2] = label
 
         return x, y
 

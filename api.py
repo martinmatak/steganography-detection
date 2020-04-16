@@ -9,9 +9,13 @@ def total_number_of_validation_samples():
 def total_number_of_test_samples():
     return 7
 
-def train_api(image_id, show_image=False):
-    image = cv2.imread('sample.png') #TODO @Jane: Load based on image_id
-    label = 1 #TODO @Jane: Load based on image_id
+def train_api(image_id, image_map, show_image=False):
+    if image_map[image_id] == 'stegos':
+        image = cv2.imread('./stegos/'+str(image_id)+'.png')
+        label = 1
+    elif image_map[image_id] == 'originals':
+        image = cv2.imread('./originals/' + str(image_id) + '.png')
+        label = 0
     if show_image:
         print("Press ENTER while the window with the image is focused to continue..")
         cv2.imshow(image_id, image)
@@ -19,14 +23,20 @@ def train_api(image_id, show_image=False):
         cv2.destroyAllWindows()
     return image, label
 
-def valid_api(image_id, show_image=False):
-    #TODO @Jane
-    image = cv2.imread('sample.png')
-    label = 1
+def valid_api(image_id, image_map, show_image=False):
+    if image_map[image_id] == 'stegos':
+        image = cv2.imread('./stegos/' + str(image_id) + '.png')
+        label = 1
+    elif image_map[image_id] == 'originals':
+        image = cv2.imread('./originals/' + str(image_id) + '.png')
+        label = 0
     return image, label
 
-def test_api(image_id, show_image=False):
-    #TODO @Jane
-    image = cv2.imread('sample.png')
-    label = 1
+def test_api(image_id, image_map, show_image=False):
+    if image_map[image_id] == 'stegos':
+        image = cv2.imread('./stegos/' + str(image_id) + '.png')
+        label = 1
+    elif image_map[image_id] == 'originals':
+        image = cv2.imread('./originals/' + str(image_id) + '.png')
+        label = 0
     return image, label
