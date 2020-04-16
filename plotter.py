@@ -8,4 +8,4 @@ def plot_loss_history(loss_history, output_dir):
     plt.ylabel("loss")
     plt.xlabel("epoch")
     plt.legend(["train", "test"], loc="upper left")
-    plt.savefig(output_dir.joinpath("history.png"))
+    plt.savefig(open(str(output_dir.joinpath("history.png")),'wb'))
