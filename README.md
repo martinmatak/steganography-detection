@@ -49,3 +49,23 @@ optional arguments:
 #### Results 
  
 Add here graphs 
+## StegoAppDB
+Data can be downloaded from the StegoAppDB interface:
+
+https://data.csafe.iastate.edu/StegoDatabase/
+
+```bash
+usage: extract_sort.py [-h] --model_path MODEL_PATH [--show_image SHOW_IMAGE]
+
+This script tests DNN used for steganography detection.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --model_path MODEL_PATH
+                        path to model file (e.g. /Downloads/model.hdf5)
+                        (default: None)
+  --show_image SHOW_IMAGE
+                        Show the image for which prediction is computed
+                        (default: False)
+```
+
