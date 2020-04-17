@@ -46,6 +46,32 @@ optional arguments:
                         (default: False)
 ```
 
+
+## StegoAppDB
+Data can be downloaded from the StegoAppDB interface:
+
+https://data.csafe.iastate.edu/StegoDatabase/
+
+Once downloaded, extract the zip file
+
+```bash
+usage: data_sort.py [-h] --data_dir DATA_DIR [--split SPLIT]
+
+The script shuffles, and splits the images in the data_dir, into the train, test, validation directories
+
+required arguments:
+  --data_dir DATA_DIR
+                        path to dataset dir
+                             (e.g. /Downloads/StegoAppDB_stegos_20200416-144427)
+
+optional arguments:
+  -h, --help            show this help message and exit
+
+  --split SPLIT
+                        The split ratio for train, test, validation respecitvely 
+                        (default: [.6, .2, .2])
+```
+
 #### Results 
  
 Add here graphs 
