@@ -1,5 +1,4 @@
 import tensorflow as tf
-import api
 
 from tensorflow.keras.optimizers import Adam
 from generator import ImagesGenerator
@@ -10,7 +9,7 @@ import numpy as np
 import argparse
 from tensorflow.keras import metrics
 from plotter import plot_loss_history
-
+from api import API
 
 def get_args():
     parser = argparse.ArgumentParser(description="This script trains a model for steganography detection",
@@ -66,6 +65,7 @@ def main():
                  ]
 
     # load training and validation data
+    api = API("data") # here insert data path
     nr_of_training_samples = api.total_number_of_training_samples()
     nr_of_valid_samples= api.total_number_of_validation_samples()
     train_api = api.train_api
