@@ -5,7 +5,7 @@ import shutil
 import random
 import argparse
 
-def extract_dataset(data_dir:str, split:list=[.6, .2, .2], source:str='stegoappdb'):
+def split_dataset(data_dir:str, split:list=[.6, .2, .2], source:str= 'stegoappdb'):
     """
     This function takes the path of the extracted dataset from the StegoAppDB and sorts the images
     images are placed into the test, train, validation directories according to the supplied split param
@@ -58,7 +58,7 @@ def get_args():
     parser = argparse.ArgumentParser(description="This script sorts and labels StegoAppDB dataset",
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument("--data_dir", type=str, required=True,
-                        help="path to model file (e.g. /Downloads/StegoAppDB_stegos_20200416-144427)")
+                        help="path to data_dir (e.g. /Downloads/StegoAppDB_stegos_20200416-144427)")
     parser.add_argument("--split", type=list, default=[.6, .2, .2],
                         help="Train, test, validate split")
     args = parser.parse_args()
@@ -67,7 +67,7 @@ def get_args():
 
 def main():
     args = get_args()
-    extract_dataset(args.data_dir, args.split)
+    split_dataset(args.data_dir, args.split)
 
 
 if __name__ == '__main__':

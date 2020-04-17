@@ -46,26 +46,32 @@ optional arguments:
                         (default: False)
 ```
 
-#### Results 
- 
-Add here graphs 
+
 ## StegoAppDB
 Data can be downloaded from the StegoAppDB interface:
 
 https://data.csafe.iastate.edu/StegoDatabase/
 
-```bash
-usage: extract_sort.py [-h] --model_path MODEL_PATH [--show_image SHOW_IMAGE]
+Once downloaded, extract the zip file
 
-This script tests DNN used for steganography detection.
+```bash
+usage: data_sort.py [-h] --data_dir DATA_DIR [--split SPLIT]
+
+The script shuffles, and splits the images in the data_dir, into the train, test, validation directories
+
+required arguments:
+  --data_dir DATA_DIR
+                        path to dataset dir
+                             (e.g. /Downloads/StegoAppDB_stegos_20200416-144427)
 
 optional arguments:
   -h, --help            show this help message and exit
-  --model_path MODEL_PATH
-                        path to model file (e.g. /Downloads/model.hdf5)
-                        (default: None)
-  --show_image SHOW_IMAGE
-                        Show the image for which prediction is computed
-                        (default: False)
+
+  --split SPLIT
+                        The split ratio for train, test, validation respecitvely 
+                        (default: [.6, .2, .2])
 ```
 
+#### Results 
+ 
+Add here graphs 
