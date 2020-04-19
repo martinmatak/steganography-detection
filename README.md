@@ -51,8 +51,10 @@ optional arguments:
 Data can be downloaded from the StegoAppDB interface:
 
 https://data.csafe.iastate.edu/StegoDatabase/
-
-Once downloaded, extract the zip file
+* First query the database for images
+* Then download the images
+* Finally extract the images to any directory
+* run data_sort.py to sort/split into train, test, validation directories
 
 ```bash
 usage: data_sort.py [-h] --data_dir DATA_DIR [--split SPLIT]
