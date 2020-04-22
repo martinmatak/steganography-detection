@@ -31,6 +31,10 @@ class ImagesGenerator(Sequence):
         batch_size = self.batch_size
         image_size = self.image_size
 
+        # feed forward neural network
+      #  x = np.zeros((batch_size, image_size*image_size*3), dtype=np.float32)
+        
+        # CNN
         x = np.zeros((batch_size, image_size, image_size, 3), dtype=np.float32)
         y = np.zeros((batch_size, 1), dtype=np.int32)
 
@@ -38,6 +42,10 @@ class ImagesGenerator(Sequence):
 
         for i, sample_id in enumerate(sample_indices):
             image, label = self.load_image_api(sample_id, self.show_image)
+            # feed forward neural network
+            # x[i] = transform_image(image, image_size).ravel()
+
+            # CNN
             x[i] = transform_image(image, image_size)
             y[i] = label
 

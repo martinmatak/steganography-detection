@@ -4,7 +4,7 @@ from pathlib import Path
 
 class API():
     
-    def __init__(self, data_path):
+    def __init__(self, data_path="data"):
         data_path = Path(data_path)
         self.training_samples = get_paths(data_path.joinpath("training"))
         self.validation_samples = get_paths(data_path.joinpath("validation"))

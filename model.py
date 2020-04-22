@@ -7,6 +7,15 @@ def get_model(image_size):
     :param image_size: Model will expect images with image_size x image_size dimensions.
     """
     model = models.Sequential()
+    # feed forward neural network 
+    # model.add(Dense(64, input_dim=image_size*image_size*3, activation='relu'))
+    # model.add(Dropout(0.5))
+    # model.add(Dense(64, activation='relu'))
+    # model.add(Dropout(0.5))
+    # model.add(Dense(1, activation='sigmoid'))
+    # return model
+
+    # VGG-like CNN
 
     # block 1
     model.add(Conv2D(16, (3, 3), input_shape=(image_size, image_size, 3), activation="relu"))
@@ -34,12 +43,9 @@ def get_model(image_size):
     model.add(MaxPooling2D(pool_size=(2, 2)))
 
     model.add(Flatten())
-
     model.add(Dense(500, activation="relu"))
-    model.add(Dropout(rate=0.5))
-    model.add(Dense(100, activation="relu"))
     model.add(Dropout(rate=0.25))
 
-    model.add(Dense(1))
+    model.add(Dense(1, activation="sigmoid"))
 
     return model

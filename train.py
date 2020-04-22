@@ -2,14 +2,22 @@ import tensorflow as tf
 
 from tensorflow.keras.optimizers import Adam
 from generator import ImagesGenerator
-from model import get_model
-from pathlib import Path
+from model import get_model 
+from pathlib import Path 
 from tensorflow.keras.callbacks import LearningRateScheduler, ModelCheckpoint
 import numpy as np
-import argparse
+import argparse 
 from tensorflow.keras import metrics
 from plotter import plot_loss_history
 from api import API
+
+# only needed if you are running tf-GPU with cuda version that doesn't support >2.0
+from tensorflow.compat.v1 import ConfigProto
+from tensorflow.compat.v1 import InteractiveSession
+
+config = ConfigProto()
+config.gpu_options.allow_growth = True
+session = InteractiveSession(config=config)
 
 def get_args():
     parser = argparse.ArgumentParser(description="This script trains a model for steganography detection",
