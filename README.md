@@ -45,7 +45,26 @@ optional arguments:
                         Show the image for which prediction is computed
                         (default: False)
 ```
+## Generate Stego Images
 
+```bash
+usage: stego.py [-h] [--input_dir INPUT_DIR] [--split SPLIT]
+                [--embed_messages EMBED_MESSAGES]
+
+This script generates stego images, and sorts them into train, test, val dirs
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --input_dir INPUT_DIR
+                        directory of original images (no subdirs) (default:
+                        None)
+  --split SPLIT         Train, Test, Validation split (default: [0.6, 0.2,
+                        0.2])
+  --embed_messages EMBED_MESSAGES
+                        list of messages to embed within the images, if None:
+                        generates random 20 character str (default: None)
+
+```
 
 ## StegoAppDB
 Data can be downloaded from the StegoAppDB interface:
