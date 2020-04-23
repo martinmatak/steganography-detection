@@ -33,7 +33,7 @@ def decr_img(imgpath):
     message = lsbset.reveal(imgpath, generators.eratosthenes())
     return message
 
-def genStegos(imagedir, messages:list=None, split:list=[.6, .2, .2]):
+def generate_stegos(imagedir, messages:list=None, split:list=[.6, .2, .2]):
     imgs = [x for x in os.listdir(imagedir) if '.jpg' in x or '.png' in x]
     test_len = int(len(imgs)*split[1])
     val_len = int(len(imgs)*split[2])
@@ -67,7 +67,7 @@ def genStegos(imagedir, messages:list=None, split:list=[.6, .2, .2]):
 
 def main():
     args = get_args()
-    genStegos(imagedir=args.input_dir, messages=args.embed_messages, split=args.split)
+    generate_stegos(imagedir=args.input_dir, messages=args.embed_messages, split=args.split)
 
 
 if __name__ == '__main__':

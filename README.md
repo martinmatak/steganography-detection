@@ -48,7 +48,7 @@ optional arguments:
 ## Generate Stego Images
 
 ```bash
-usage: stego.py [-h] [--input_dir INPUT_DIR] [--split SPLIT]
+usage: generate_stegos.py [-h] [--input_dir INPUT_DIR] [--split SPLIT]
                 [--embed_messages EMBED_MESSAGES]
 
 This script generates stego images, and sorts them into train, test, val dirs
