@@ -131,4 +131,5 @@ dmypy.json
 out/
 # intelij ide
 .idea/
+# Data directory
 data/

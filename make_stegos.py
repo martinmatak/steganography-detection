@@ -6,6 +6,7 @@ import os
 import numpy as np
 import shutil
 import argparse
+from cv2 import imread, imwrite
 
 def get_args():
     parser = argparse.ArgumentParser(description="This script generates stego images, and sorts them into train, test, val dirs",
@@ -37,33 +38,35 @@ def generate_stegos(imagedir, messages:list=None, split:list=[.6, .2, .2]):
     imgs = [x for x in os.listdir(imagedir) if '.jpg' in x or '.png' in x]
     test_len = int(len(imgs)*split[1])
     val_len = int(len(imgs)*split[2])
-    train_len = int(len(imgs)*split(0))
+    train_len = int(len(imgs)*split[0])
     chrs = list(tuple(chr(i) for i in range(32, 126) if chr(i).isprintable()))
     def sortimg(imgname, outpath):
         og_img = os.path.join(imagedir, imgname)
+        cover = os.path.join(os.getcwd(), 'data', outpath, imgname.replace('.jpg', '.png').replace(".", "_original."))
+        imwrite(cover, imread(og_img))
         steg = os.path.join(os.getcwd(), 'data', outpath, imgname.replace('.jpg', '.png').replace(".", '_stego.'))
-        cover = os.path.join(os.getcwd(), 'data', outpath, imgname.replace(".", "_original."))
-        shutil.copy(og_img, cover)
+        # cover = os.path.join(os.getcwd(), 'data', outpath, imgname.replace(".", "_original."))
         if not messages:
             msg = ''.join(np.random.choice(chrs, 20))
         else:
             msg = np.random.choice(messages)
-        encr_img(og_img, msg, steg)
+        encr_img(cover, msg, steg)
+
     # split into test, val, and train directories
     for i in imgs[:test_len]:
         # do test
         sortimg(i, 'test')
-    print(f'Test split: {test_len} images')
+    print(f'Test split: {test_len} stego images')
 
     for i in imgs[test_len:test_len+val_len]:
         # do valid
         sortimg(i, 'validation')
-    print(f'Validation split: {val_len} images')
+    print(f'Validation split: {val_len} stego images')
 
     for i in imgs[test_len+val_len:]:
         # do train
         sortimg(i, 'training')
-    print(f'Train split: {train_len} images')
+    print(f'Train split: {train_len} stego images')
 
 def main():
     args = get_args()
