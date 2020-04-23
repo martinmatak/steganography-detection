@@ -15,8 +15,8 @@ def get_args():
                         help="directory of original images (no subdirs)")
     parser.add_argument("--split", type=list, default=[.6, .2, .2],
                         help="Train, Test, Validation split")
-    parser.add_argument("--embed_messages", type=list, default=None,
-                        help="list of messages to embed within the images, if None: generates random 20 character str")
+    parser.add_argument("--embed_messages", nargs='*', default=None,
+                        help="messages to embed within the images. If None: generates random 20 character str")
     args = parser.parse_args()
     return args
 
@@ -40,7 +40,7 @@ def generate_stegos(imagedir, messages:list=None, split:list=[.6, .2, .2]):
     val_len = int(len(imgs)*split[2])
     train_len = int(len(imgs)*split[0])
     chrs = list(tuple(chr(i) for i in range(32, 126) if chr(i).isprintable()))
-    def sortimg(imgname, outpath):
+    def sortimg(imgname, outpath, messages):
         og_img = os.path.join(imagedir, imgname)
         cover = os.path.join(os.getcwd(), 'data', outpath, imgname.replace('.jpg', '.png').replace(".", "_original."))
         imwrite(cover, imread(og_img))
@@ -55,17 +55,17 @@ def generate_stegos(imagedir, messages:list=None, split:list=[.6, .2, .2]):
     # split into test, val, and train directories
     for i in imgs[:test_len]:
         # do test
-        sortimg(i, 'test')
+        sortimg(i, 'test', messages)
     print(f'Test split: {test_len} stego images')
 
     for i in imgs[test_len:test_len+val_len]:
         # do valid
-        sortimg(i, 'validation')
+        sortimg(i, 'validation', messages)
     print(f'Validation split: {val_len} stego images')
 
     for i in imgs[test_len+val_len:]:
         # do train
-        sortimg(i, 'training')
+        sortimg(i, 'training', messages)
     print(f'Train split: {train_len} stego images')
 
 def main():

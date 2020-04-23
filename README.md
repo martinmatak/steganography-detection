@@ -49,7 +49,7 @@ optional arguments:
 
 ```bash
 usage: make_stegos.py [-h] [--input_dir INPUT_DIR] [--split SPLIT]
-                [--embed_messages EMBED_MESSAGES]
+                      [--embed_messages [EMBED_MESSAGES [EMBED_MESSAGES ...]]]
 
 This script generates stego images, and sorts them into train, test, val dirs
 
@@ -60,8 +60,8 @@ optional arguments:
                         None)
   --split SPLIT         Train, Test, Validation split (default: [0.6, 0.2,
                         0.2])
-  --embed_messages EMBED_MESSAGES
-                        list of messages to embed within the images, if None:
+  --embed_messages [EMBED_MESSAGES [EMBED_MESSAGES ...]]
+                        messages to embed within the images, if None:
                         generates random 20 character str (default: None)
 
 ```
